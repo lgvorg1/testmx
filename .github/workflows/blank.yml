@@ -16,8 +16,16 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
+    name: Build (${{ matrix.language }})
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+        - language: java-kotlin
+          build-mode: manual # This mode only analyzes Java. Set this to 'autobuild' or 'manual' to analyze Kotlin too.
+        - language: javascript-typescript
+          build-mode: manual
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -33,3 +41,13 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+          
+      - if: matrix.build-mode == 'manual'
+        shell: bash
+        run: |
+          echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+          echo "mode: ${{matrix.language}}"
+          2cho "language:${{matrix.language}}"
+          echo "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+          echo ""
+          
