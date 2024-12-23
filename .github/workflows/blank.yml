@@ -46,7 +46,7 @@ jobs:
         shell: bash
         run: |
           echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-          echo "mode: ${{matrix.language}}"
+          echo "mode: ${{matrix.build-mode}}"
           echo "language:${{matrix.language}}"
           echo "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
           echo ""
